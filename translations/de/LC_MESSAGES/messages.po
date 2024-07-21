@@ -1,0 +1,169 @@
+# German translations for PROJECT.
+# Copyright (C) 2024 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2024-07-21 19:25+0200\n"
+"PO-Revision-Date: 2024-07-21 19:25+0200\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: de\n"
+"Language-Team: de <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.15.0\n"
+
+#: app.py:116
+msgid "The owner has been notified."
+msgstr "Der Besitzer wurde benachrichtigt."
+
+#: app.py:118
+msgid "Failed to send notification: "
+msgstr "Benachrichtigung konnte nicht gesendet werden: "
+
+#: app.py:120
+msgid "Item not found"
+msgstr "Artikel nicht gefunden"
+
+#: app.py:131 app.py:188
+msgid "Invalid credentials"
+msgstr "Ungültige Anmeldeinformationen"
+
+#: app.py:155 app.py:219
+msgid "Item added successfully"
+msgstr "Artikel erfolgreich hinzugefügt"
+
+#: app.py:175
+msgid "Registration successful"
+msgstr "Registrierung erfolgreich"
+
+#: templates/index.html:6 templates/index.html:13
+msgid "Fundamt - Lost and Found"
+msgstr "Fundamt - Verloren und Gefunden"
+
+#: templates/index.html:14
+msgid ""
+"Make it easy to find your items! Fundamt is a privacy-focused Lost and "
+"Found service."
+msgstr ""
+"Machen Sie es einfach, Ihre Gegenstände zu finden! Fundamt ist ein auf Privatsphäre fokussierter Fundservice."
+
+#: templates/index.html:16
+msgid "Enter Item ID"
+msgstr "Geben Sie die Artikel-ID ein"
+
+#: templates/index.html:17
+msgid "Search"
+msgstr "Suchen"
+
+#: templates/index.html:20
+msgid "Admin Login"
+msgstr "Admin-Login"
+
+#: templates/index.html:21
+msgid "Login"
+msgstr "Anmelden"
+
+#: templates/index.html:22
+msgid "Register"
+msgstr "Registrieren"
+
+#: templates/index.html:25
+msgid "Reported Missing Items"
+msgstr "Gemeldete verlorene Artikel"
+
+#: templates/index.html:32
+msgid "Last Location Found"
+msgstr "Letzter Fundort"
+
+#: templates/index.html:40
+msgid "FAQ"
+msgstr "FAQ"
+
+#: templates/index.html:42
+msgid "How does it work?"
+msgstr "Wie funktioniert es?"
+
+#: templates/index.html:45
+msgid "Tag your personal items with a Fundamt sticker or a keychain."
+msgstr "Kennzeichnen Sie Ihre persönlichen Gegenstände mit einem Fundamt-Aufkleber oder einem Schlüsselanhänger."
+
+#: templates/index.html:46
+msgid "The finder of your item sees the ID of the item and types it into Fundamt."
+msgstr "Der Finder Ihres Gegenstandes sieht die ID des Gegenstandes und gibt sie in Fundamt ein."
+
+#: templates/index.html:47
+msgid "They can then send you a message to your phone or email."
+msgstr "Sie können Ihnen dann eine Nachricht auf Ihr Telefon oder Ihre E-Mail senden."
+
+#: templates/index.html:48
+msgid "You will get in contact with them by sending your contact information."
+msgstr "Sie werden mit ihnen in Kontakt treten, indem Sie Ihre Kontaktinformationen senden."
+
+#: templates/index.html:49
+msgid "The finder won't see your phone number or email."
+msgstr "Der Finder sieht weder Ihre Telefonnummer noch Ihre E-Mail-Adresse."
+
+#: templates/index.html:54
+msgid "Is it free?"
+msgstr "Ist es kostenlos?"
+
+#: templates/index.html:56
+msgid "Fundamt is free and is supported through sales of stickers."
+msgstr "Fundamt ist kostenlos und wird durch den Verkauf von Aufklebern unterstützt."
+
+#: templates/index.html:60
+msgid "What data do you save?"
+msgstr "Welche Daten speichern Sie?"
+
+#: templates/index.html:62
+msgid "Fundamt is a privacy-focused solution. We save the following information:"
+msgstr "Fundamt ist eine auf Privatsphäre fokussierte Lösung. Wir speichern die folgenden Informationen:"
+
+#: templates/index.html:64
+msgid ""
+"Item: Description of item, images of item (EXIF data automatically "
+"removed), contact information (this can be anything you type in, for "
+"example, your Signal account), reported status (yes/no)."
+msgstr ""
+"Artikel: Beschreibung des Artikels, Bilder des Artikels (EXIF-Daten werden automatisch entfernt), Kontaktinformationen (dies kann alles sein, was Sie eingeben, zum Beispiel Ihr Signal-Konto), Meldestatus (ja/nein)."
+
+#: templates/index.html:65
+msgid ""
+"User account (optional): Phone number, e-mail, password. User accounts "
+"allow item management but are not necessary."
+msgstr ""
+"Benutzerkonto (optional): Telefonnummer, E-Mail, Passwort. Benutzerkonten ermöglichen die Verwaltung von Artikeln, sind jedoch nicht erforderlich."
+
+#: templates/index.html:85
+msgid "Is it correct?"
+msgstr "Ist es korrekt?"
+
+#: templates/index.html:96
+msgid "No"
+msgstr "Nein"
+
+#: templates/index.html:97
+msgid "Yes"
+msgstr "Ja"
+
+#: templates/index.html:108
+msgid "Message owner"
+msgstr "Nachricht an den Besitzer"
+
+#: templates/index.html:114
+msgid "Enter your message"
+msgstr "Geben Sie Ihre Nachricht ein"
+
+#: templates/index.html:117
+msgid "Close"
+msgstr "Schließen"
+
+#: templates/index.html:118
+msgid "Send Message"
+msgstr "Nachricht senden"

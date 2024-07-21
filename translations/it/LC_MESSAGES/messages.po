@@ -1,0 +1,169 @@
+# Italian translations for PROJECT.
+# Copyright (C) 2024 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2024-07-21 19:25+0200\n"
+"PO-Revision-Date: 2024-07-21 19:25+0200\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: it\n"
+"Language-Team: it <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.15.0\n"
+
+#: app.py:116
+msgid "The owner has been notified."
+msgstr "Il proprietario è stato notificato."
+
+#: app.py:118
+msgid "Failed to send notification: "
+msgstr "Invio della notifica fallito: "
+
+#: app.py:120
+msgid "Item not found"
+msgstr "Oggetto non trovato"
+
+#: app.py:131 app.py:188
+msgid "Invalid credentials"
+msgstr "Credenziali non valide"
+
+#: app.py:155 app.py:219
+msgid "Item added successfully"
+msgstr "Oggetto aggiunto con successo"
+
+#: app.py:175
+msgid "Registration successful"
+msgstr "Registrazione avvenuta con successo"
+
+#: templates/index.html:6 templates/index.html:13
+msgid "Fundamt - Lost and Found"
+msgstr "Fundamt - Oggetti Smarriti"
+
+#: templates/index.html:14
+msgid ""
+"Make it easy to find your items! Fundamt is a privacy-focused Lost and "
+"Found service."
+msgstr ""
+"Rendi facile trovare i tuoi oggetti! Fundamt è un servizio di oggetti smarriti incentrato sulla privacy."
+
+#: templates/index.html:16
+msgid "Enter Item ID"
+msgstr "Inserisci l'ID dell'oggetto"
+
+#: templates/index.html:17
+msgid "Search"
+msgstr "Cerca"
+
+#: templates/index.html:20
+msgid "Admin Login"
+msgstr "Login Amministratore"
+
+#: templates/index.html:21
+msgid "Login"
+msgstr "Accedi"
+
+#: templates/index.html:22
+msgid "Register"
+msgstr "Registrati"
+
+#: templates/index.html:25
+msgid "Reported Missing Items"
+msgstr "Oggetti segnalati come persi"
+
+#: templates/index.html:32
+msgid "Last Location Found"
+msgstr "Ultima posizione trovata"
+
+#: templates/index.html:40
+msgid "FAQ"
+msgstr "FAQ"
+
+#: templates/index.html:42
+msgid "How does it work?"
+msgstr "Come funziona?"
+
+#: templates/index.html:45
+msgid "Tag your personal items with a Fundamt sticker or a keychain."
+msgstr "Etichetta i tuoi oggetti personali con un adesivo o un portachiavi Fundamt."
+
+#: templates/index.html:46
+msgid "The finder of your item sees the ID of the item and types it into Fundamt."
+msgstr "Chi trova il tuo oggetto vede l'ID dell'oggetto e lo inserisce in Fundamt."
+
+#: templates/index.html:47
+msgid "They can then send you a message to your phone or email."
+msgstr "Possono quindi inviarti un messaggio sul tuo telefono o via email."
+
+#: templates/index.html:48
+msgid "You will get in contact with them by sending your contact information."
+msgstr "Potrai metterti in contatto con loro inviando le tue informazioni di contatto."
+
+#: templates/index.html:49
+msgid "The finder won't see your phone number or email."
+msgstr "Il trovatore non vedrà il tuo numero di telefono o email."
+
+#: templates/index.html:54
+msgid "Is it free?"
+msgstr "È gratuito?"
+
+#: templates/index.html:56
+msgid "Fundamt is free and is supported through sales of stickers."
+msgstr "Fundamt è gratuito ed è supportato dalla vendita di adesivi."
+
+#: templates/index.html:60
+msgid "What data do you save?"
+msgstr "Quali dati salvate?"
+
+#: templates/index.html:62
+msgid "Fundamt is a privacy-focused solution. We save the following information:"
+msgstr "Fundamt è una soluzione incentrata sulla privacy. Salviamo le seguenti informazioni:"
+
+#: templates/index.html:64
+msgid ""
+"Item: Description of item, images of item (EXIF data automatically "
+"removed), contact information (this can be anything you type in, for "
+"example, your Signal account), reported status (yes/no)."
+msgstr ""
+"Oggetto: Descrizione dell'oggetto, immagini dell'oggetto (dati EXIF rimossi automaticamente), informazioni di contatto (può essere qualsiasi cosa inserisci, ad esempio il tuo account Signal), stato segnalato (sì/no)."
+
+#: templates/index.html:65
+msgid ""
+"User account (optional): Phone number, e-mail, password. User accounts "
+"allow item management but are not necessary."
+msgstr ""
+"Account utente (opzionale): Numero di telefono, e-mail, password. Gli account utente consentono la gestione degli oggetti, ma non sono necessari."
+
+#: templates/index.html:85
+msgid "Is it correct?"
+msgstr "È corretto?"
+
+#: templates/index.html:96
+msgid "No"
+msgstr "No"
+
+#: templates/index.html:97
+msgid "Yes"
+msgstr "Sì"
+
+#: templates/index.html:108
+msgid "Message owner"
+msgstr "Contatta il proprietario"
+
+#: templates/index.html:114
+msgid "Enter your message"
+msgstr "Inserisci il tuo messaggio"
+
+#: templates/index.html:117
+msgid "Close"
+msgstr "Chiudi"
+
+#: templates/index.html:118
+msgid "Send Message"
+msgstr "Invia messaggio"

@@ -1,35 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ g.locale }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fundamt - Lost and Found</title>
+    <title>{{ _('Fundamt - Lost and Found') }}</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <link href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="container">
-        <h1 class="text-center my-4">Fundamt - Lost and Found</h1>
-        <p class="text-center">Make it easy to find your items! Fundamt is a privacy-focused Lost and Found service.</p>
+        <h1 class="text-center my-4">{{ _('Fundamt - Lost and Found') }}</h1>
+        <p class="text-center">{{ _('Make it easy to find your items! Fundamt is a privacy-focused Lost and Found service.') }}</p>
         <form id="search-form" class="form-inline justify-content-center">
-            <input type="text" name="item_id" id="item_id" class="form-control mb-2 mr-sm-2" placeholder="Enter Item ID">
-            <button type="submit" class="btn btn-primary mb-2">Search</button>
+            <input type="text" name="item_id" id="item_id" class="form-control mb-2 mr-sm-2" placeholder="{{ _('Enter Item ID') }}">
+            <button type="submit" class="btn btn-primary mb-2">{{ _('Search') }}</button>
         </form>
         <div class="text-center mt-4">
-            <a href="{{ url_for('admin_login') }}" class="btn btn-secondary">Admin Login</a>
-            <a href="{{ url_for('login') }}" class="btn btn-secondary">Login</a>
-            <a href="{{ url_for('register') }}" class="btn btn-secondary">Register</a>
+            <a href="{{ url_for('admin_login') }}" class="btn btn-secondary">{{ _('Admin Login') }}</a>
+            <a href="{{ url_for('login') }}" class="btn btn-secondary">{{ _('Login') }}</a>
+            <a href="{{ url_for('register') }}" class="btn btn-secondary">{{ _('Register') }}</a>
         </div>
         <div class="reported-items mt-4">
-            <h3 class="text-center">Reported Missing Items</h3>
+            <h3 class="text-center">{{ _('Reported Missing Items') }}</h3>
             <div class="row">
                 {% for item in reported_items %}
                 <div class="col-md-3">
                     <div class="card mb-4">
                         <img src="{{ url_for('static', filename='useruploads/' ~ item.image) }}" class="card-img-top" alt="...">
                         <div class="card-body">
-                            <p class="card-text">Last Location Found: {{ item.location }}</p>
+                            <p class="card-text">{{ _('Last Location Found') }}: {{ item.location }}</p>
                         </div>
                     </div>
                 </div>
@@ -37,35 +37,41 @@
             </div>
         </div>
         <div class="faq mt-4">
-            <h3 class="text-center">FAQ</h3>
+            <h3 class="text-center">{{ _('FAQ') }}</h3>
             <div class="faq-item">
-                <div class="faq-question">How does it work?</div>
+                <div class="faq-question">{{ _('How does it work?') }}</div>
                 <div class="faq-answer">
                     <ol>
-                        <li>Tag your personal items with a Fundamt sticker or a keychain.</li>
-                        <li>The finder of your item sees the ID of the item and types it into Fundamt.</li>
-                        <li>They can then send you a message to your phone or email.</li>
-                        <li>You will get in contact with them by sending your contact information.</li>
-                        <li>The finder won't see your phone number or email.</li>
+                        <li>{{ _('Tag your personal items with a Fundamt sticker or a keychain.') }}</li>
+                        <li>{{ _('The finder of your item sees the ID of the item and types it into Fundamt.') }}</li>
+                        <li>{{ _('They can then send you a message to your phone or email.') }}</li>
+                        <li>{{ _('You will get in contact with them by sending your contact information.') }}</li>
+                        <li>{{ _("The finder won\\'t see your phone number or email.") }}</li>
                     </ol>
                 </div>
             </div>
             <div class="faq-item">
-                <div class="faq-question">Is it free?</div>
+                <div class="faq-question">{{ _('Is it free?') }}</div>
                 <div class="faq-answer">
-                    <p>Fundamt is free and is supported through sales of stickers.</p>
+                    <p>{{ _('Fundamt is free and is supported through sales of stickers.') }}</p>
                 </div>
             </div>
             <div class="faq-item">
-                <div class="faq-question">What data do you save?</div>
+                <div class="faq-question">{{ _('What data do you save?') }}</div>
                 <div class="faq-answer">
-                    <p>Fundamt is a privacy-focused solution. We save the following information:</p>
+                    <p>{{ _('Fundamt is a privacy-focused solution. We save the following information:') }}</p>
                     <ul>
-                        <li><strong>Item:</strong> Description of item, images of item (EXIF data automatically removed), contact information (this can be anything you type in, for example, your Signal account), reported status (yes/no).</li>
-                        <li><strong>User account (optional):</strong> Phone number, e-mail, password. User accounts allow item management but are not necessary.</li>
+                        <li>{{ _('Item: Description of item, images of item (EXIF data automatically removed), contact information (this can be anything you type in, for example, your Signal account), reported status (yes/no).') }}</li>
+                        <li>{{ _('User account (optional): Phone number, e-mail, password. User accounts allow item management but are not necessary.') }}</li>
                     </ul>
                 </div>
             </div>
+        </div>
+        <div class="text-center mt-4">
+            <a href="?lang=en" class="btn btn-secondary">English</a>
+            <a href="?lang=de" class="btn btn-secondary">Deutsch</a>
+            <a href="?lang=fr" class="btn btn-secondary">Français</a>
+            <a href="?lang=it" class="btn btn-secondary">Italiano</a>
         </div>
     </div>
 
@@ -74,7 +80,7 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="itemModalLabel">Is it correct?</h5>
+            <h5 class="modal-title" id="itemModalLabel">{{ _('Is it correct?') }}</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -85,8 +91,8 @@
             <input type="hidden" id="modal-item-id">
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-            <button type="button" class="btn btn-primary" id="confirm-yes">Yes</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ _('No') }}</button>
+            <button type="button" class="btn btn-primary" id="confirm-yes">{{ _('Yes') }}</button>
           </div>
         </div>
       </div>
@@ -97,17 +103,17 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="messageModalLabel">Message owner</h5>
+            <h5 class="modal-title" id="messageModalLabel">{{ _('Message owner') }}</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
           <div class="modal-body">
-            <textarea id="owner-message" class="form-control" rows="3" placeholder="Enter your message"></textarea>
+            <textarea id="owner-message" class="form-control" rows="3" placeholder="{{ _('Enter your message') }}"></textarea>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary" id="send-message">Send Message</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ _('Close') }}</button>
+            <button type="button" class="btn btn-primary" id="send-message">{{ _('Send Message') }}</button>
           </div>
         </div>
       </div>

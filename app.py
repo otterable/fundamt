@@ -1,10 +1,11 @@
-from flask import Flask, render_template, request, redirect, url_for, flash, session, jsonify
+from flask import Flask, render_template, request, redirect, url_for, flash, session, jsonify, g
 from flask_sqlalchemy import SQLAlchemy
 from flask_mail import Mail, Message
 from twilio.rest import Client
 from flask_bootstrap import Bootstrap
 from werkzeug.security import generate_password_hash, check_password_hash
 from werkzeug.utils import secure_filename
+from flask_babel import Babel, lazy_gettext as _l, gettext as _
 from config import Config
 import os
 import random
@@ -16,6 +17,7 @@ app.config.from_object(Config)
 db = SQLAlchemy(app)
 mail = Mail(app)
 bootstrap = Bootstrap(app)
+babel = Babel()
 
 from models import User, Item
 
@@ -31,6 +33,16 @@ def format_phone_number(phone_number):
             raise ValueError("Invalid phone number")
     except phonenumbers.NumberParseException:
         raise ValueError("Invalid phone number format")
+
+@app.before_request
+def before_request():
+    g.locale = request.args.get('lang') or request.accept_languages.best_match(['en', 'de', 'fr', 'it'])
+    print(f"[DEBUG] Current locale set to: {g.locale}")
+
+def get_locale():
+    return g.locale
+
+babel.init_app(app, locale_selector=get_locale)
 
 @app.route('/')
 def index():
@@ -97,11 +109,11 @@ def report_missing(item_id):
             msg.body = f"Your item with ID {item_id} has been reported as missing."
             mail.send(msg)
 
-            flash('The owner has been notified.')
+            flash(_('The owner has been notified.'))
         except ValueError as e:
-            flash(f"Failed to send notification: {str(e)}")
+            flash(_('Failed to send notification: ') + str(e))
         return redirect(url_for('index'))
-    flash('Item not found')
+    flash(_('Item not found'))
     return redirect(url_for('index'))
 
 @app.route('/admin', methods=['GET', 'POST'])
@@ -112,7 +124,7 @@ def admin_login():
         if email == 'office@stimmungskompass.at' and password == 'OtterRitaPebble':
             session['admin'] = True
             return redirect(url_for('admin_dashboard'))
-        flash('Invalid credentials')
+        flash(_('Invalid credentials'))
     return render_template('admin_login.html')
 
 @app.route('/admin/dashboard', methods=['GET', 'POST'])
@@ -136,7 +148,7 @@ def admin_dashboard():
             new_item = Item(id=item_id, name=name, email=email, phone=phone, image=filename, reported=True)
             db.session.add(new_item)
             db.session.commit()
-            flash('Item added successfully')
+            flash(_('Item added successfully'))
     items = Item.query.all()
     return render_template('admin_dashboard.html', items=items)
 
@@ -156,7 +168,7 @@ def register():
         new_user = User(username=username, password=hashed_password, email=email, phone=phone)
         db.session.add(new_user)
         db.session.commit()
-        flash('Registration successful')
+        flash(_('Registration successful'))
         return redirect(url_for('login'))
     return render_template('register.html')
 
@@ -169,7 +181,7 @@ def login():
         if user and check_password_hash(user.password, password):
             session['user_id'] = user.id
             return redirect(url_for('index'))
-        flash('Invalid credentials')
+        flash(_('Invalid credentials'))
     return render_template('login.html')
 
 @app.route('/logout')
@@ -200,10 +212,11 @@ def user_dashboard():
             new_item = Item(id=item_id, title=title, name=name, email=email, phone=phone, image=filename, reported=True, user_id=user.id)
             db.session.add(new_item)
             db.session.commit()
-            flash('Item added successfully')
+            flash(_('Item added successfully'))
     items = Item.query.filter_by(user_id=user.id).all()
     return render_template('user_dashboard.html', items=items)
 
 if __name__ == '__main__':
     db.create_all()
+    print("[DEBUG] Flask app has started")
     app.run(debug=True)
