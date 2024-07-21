@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center my-4">Admin Dashboard</h1>
+        <form action="{{ url_for('admin_dashboard') }}" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="name">Item Name</label>
+                <input type="text" name="name" class="form-control" id="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" name="email" class="form-control" id="email" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone</label>
+                <input type="text" name="phone" class="form-control" id="phone" required>
+            </div>
+            <div class="form-group">
+                <label for="image">Image</label>
+                <input type="file" name="image" class="form-control-file" id="image" required>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Add Item</button>
+        </form>
+        <div class="text-center mt-4">
+            <a href="{{ url_for('index') }}" class="btn btn-secondary">Return to Index</a>
+        </div>
+        <h3 class="text-center my-4">Existing Items</h3>
+        <ul class="list-group">
+            {% for item in items %}
+            <li class="list-group-item text-dark">
+                <strong>ID: {{ item.id }}</strong> - {{ item.name }} - {{ item.email }} - {{ item.phone }}
+                <img src="{{ url_for('static', filename='useruploads/' ~ item.image) }}" alt="..." class="img-thumbnail" width="50">
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

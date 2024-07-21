@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Item Details</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="bg-dark text-light">
+    <div class="container">
+        <h1 class="text-center my-4">{{ item.name }}</h1>
+        <div class="card">
+            <img src="{{ url_for('static', filename='images/' ~ item.image) }}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <p class="card-text">Owner: {{ item.name }}</p>
+                <p class="card-text">Email: {{ item.email }}</p>
+                <p class="card-text">Phone: {{ item.phone }}</p>
+                <form action="{{ url_for('report_missing', item_id=item.id) }}" method="POST">
+                    <button type="submit" class="btn btn-danger btn-block">Report as Missing</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
