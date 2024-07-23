@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="{{ g.locale }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ _('My Tracked Items') }}</title>
+    {% include 'head_includes.html' %}
+</head>
+<body>
+    {% include 'navbar.html' %}
+    <div class="container">
+        <h1 class="text-center my-4">{{ _('My Tracked Items') }}</h1>
+        {% if user %}
+            <p class="text-center">{{ _('Logged in as: ') }}{{ user.username }}</p>
+        {% endif %}
+        {% if message %}
+            <div class="alert alert-info">{{ message }}</div>
+        {% endif %}
+        <div class="text-center mt-4">
+            <a href="{{ url_for('register_item_for_tracking') }}" class="btn btn-primary">{{ _('Add New Item') }}</a>
+            <a href="{{ url_for('register_item_as_missing') }}" class="btn btn-secondary">{{ _('Register New Missing Item') }}</a>
+        </div>
+        <div class="mt-4">
+            <h3 class="text-center">{{ _('My Tracked Items') }}</h3>
+            <div class="row">
+                {% for item in items %}
+                <div class="col-md-3">
+                    <div class="card mb-4">
+                        <img src="{{ url_for('static', filename='useruploads/' ~ item.image) }}" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ item.title }}</h5>
+                            <p>{{ _('ID: ') }}{{ item.id }}</p>
+                            <p>{{ _('Status: ') }}{{ 'Missing' if item.reported else 'Not missing' }}</p>
+                            <p>{{ _('Tracked since: ') }}{{ item.tracked_since.strftime('%Y-%m-%d %H:%M:%S') }}</p>
+                            {% if item.reported %}
+                                <p>{{ _('Reported since: ') }}{{ item.reported_since.strftime('%Y-%m-%d %H:%M:%S') }}</p>
+                            {% endif %}
+                            <form action="{{ url_for('my_tracked_items') }}" method="POST" class="d-inline">
+                                <input type="hidden" name="item_id" value="{{ item.id }}">
+                                <div class="dropdown">
+                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="actionDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        {{ _('Select Action') }}
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="actionDropdown">
+                                        <button class="dropdown-item" type="submit" name="action" value="report_missing">{{ _('Report Missing') }}</button>
+                                        <button class="dropdown-item" type="submit" name="action" value="unreport">{{ _('Unreport') }}</button>
+                                        <button class="dropdown-item" type="submit" name="action" value="delete">{{ _('Delete') }}</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="{{ url_for('index') }}">
+        <img src="{{ url_for('static', filename='images/fundamt-logo.png') }}" width="50" height="50" class="d-inline-block align-middle" alt="">
+        Fundamt
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('index') }}">{{ _('Home') }}</a>
+            </li>
+            {% if g.user %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('logout') }}">{{ _('Logout') }}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('register_item_for_tracking') }}">{{ _('Add an Item') }}</a>
+                </li>
+            {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('login') }}">{{ _('Login') }}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('register') }}">{{ _('Register') }}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('register_item_as_missing') }}">{{ _('Register a Missing Item') }}</a>
+                </li>
+            {% endif %}
+            <li class="nav-item">
+                <a class="nav-link" href="https://ermine.at">{{ _('Order Stickers') }}</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="dropdownMenuButton" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    {{ _('Language') }}
+                </a>
+                 <div class="lang-switcher">
+               
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="?lang=en" data-lang="English">English</a>
+                    <a class="dropdown-item" href="?lang=de" data-lang="Deutsch">Deutsch</a>
+                    <a class="dropdown-item" href="?lang=fr" data-lang="Français">Français</a>
+                    <a class="dropdown-item" href="?lang=it" data-lang="Italiano">Italiano</a>
+                </div>
+            </div>
+            </li>
+        </ul>
+    </div>
+</nav>

@@ -11,6 +11,7 @@ import os
 import random
 import string
 import phonenumbers
+from datetime import datetime
 
 app = Flask(__name__)
 app.config.from_object(Config)
@@ -19,7 +20,7 @@ mail = Mail(app)
 bootstrap = Bootstrap(app)
 babel = Babel()
 
-from models import User, Item
+from models import User, Item, ItemImage
 
 def generate_id():
     return ''.join(random.choices(string.ascii_letters + string.digits, k=5))
@@ -37,6 +38,9 @@ def format_phone_number(phone_number):
 @app.before_request
 def before_request():
     g.locale = request.args.get('lang') or request.accept_languages.best_match(['en', 'de', 'fr', 'it'])
+    g.user = None
+    if 'user_id' in session:
+        g.user = User.query.get(session['user_id'])
     print(f"[DEBUG] Current locale set to: {g.locale}")
 
 def get_locale():
@@ -47,7 +51,50 @@ babel.init_app(app, locale_selector=get_locale)
 @app.route('/')
 def index():
     reported_items = Item.query.filter_by(reported=True).all()
-    return render_template('index.html', reported_items=reported_items)
+    return render_template('index.html', reported_items=reported_items, user=g.user)
+
+@app.route('/my_tracked_items', methods=['GET', 'POST'])
+def my_tracked_items():
+    if 'user_id' not in session:
+        return redirect(url_for('login'))
+    
+    user = User.query.get(session['user_id'])
+    items = Item.query.filter_by(user_id=user.id).all()
+    message = None
+    
+    if request.method == 'POST':
+        item_id = request.form['item_id']
+        item = Item.query.get(item_id)
+        action = request.form['action']
+        
+        if action == 'report_missing':
+            item.reported = True
+            item.reported_since = datetime.utcnow()  # Set reported_since
+            db.session.commit()
+            message = f"Item ID {item_id} reported as missing."
+        elif action == 'unreport':
+            item.reported = False
+            item.reported_since = None  # Clear reported_since
+            db.session.commit()
+            message = f"Item ID {item_id} unreported as missing."
+        elif action == 'delete':
+            db.session.delete(item)
+            db.session.commit()
+            message = f"Item ID {item_id} deleted."
+
+    return render_template('my_tracked_items.html', items=items, user=user, message=message)
+
+@app.route('/delete_item', methods=['POST'])
+def delete_item():
+    item_id = request.form['delete_item_id']
+    item = Item.query.get(item_id)
+    if item:
+        db.session.delete(item)
+        db.session.commit()
+        flash(_('Item deleted successfully'))
+    else:
+        flash(_('Item not found'))
+    return redirect(url_for('my_tracked_items'))
 
 @app.route('/search', methods=['POST'])
 def search():
@@ -56,7 +103,7 @@ def search():
     if item:
         return jsonify({'status': 'found', 'item': {
             'id': item.id,
-            'name': item.name,
+            'title': item.title,
             'image': url_for('static', filename='useruploads/' + item.image)
         }})
     return jsonify({'status': 'not_found'})
@@ -92,6 +139,7 @@ def report_missing(item_id):
     item = Item.query.filter_by(id=item_id).first()
     if item:
         item.reported = True
+        item.reported_since = datetime.utcnow()  # Set reported_since
         db.session.commit()
 
         try:
@@ -135,22 +183,42 @@ def admin_dashboard():
         name = request.form['name']
         email = request.form['email']
         phone = request.form['phone']
-        image = request.files['image']
-        if image:
-            filename = secure_filename(image.filename)
-            upload_folder = os.path.join('static', 'useruploads')
-            if not os.path.exists(upload_folder):
-                os.makedirs(upload_folder)
-            image_path = os.path.join(upload_folder, filename)
-            image.save(image_path)
-
+        images = request.files.getlist('images')
+        
+        if images:
+            image_filenames = []
+            for image in images:
+                filename = secure_filename(image.filename)
+                upload_folder = os.path.join('static', 'useruploads')
+                if not os.path.exists(upload_folder):
+                    os.makedirs(upload_folder)
+                image_path = os.path.join(upload_folder, filename)
+                image.save(image_path)
+                image_filenames.append(filename)
+            
             item_id = generate_id().lower()
-            new_item = Item(id=item_id, name=name, email=email, phone=phone, image=filename, reported=True)
+            new_item = Item(
+                id=item_id,
+                title=name,
+                name=name,
+                email=email,
+                phone=phone,
+                image=image_filenames[0],  # First image is the title image
+                reported=True,
+                reported_since=datetime.utcnow()
+            )
             db.session.add(new_item)
             db.session.commit()
+            
+            # Save other images if any
+            for filename in image_filenames[1:]:
+                additional_image = ItemImage(item_id=item_id, filename=filename)
+                db.session.add(additional_image)
+            db.session.commit()
+            
             flash(_('Item added successfully'))
     items = Item.query.all()
-    return render_template('admin_dashboard.html', items=items)
+    return render_template('admin_dashboard.html', items=items, user=g.user)
 
 @app.route('/admin/logout')
 def admin_logout():
@@ -189,32 +257,106 @@ def logout():
     session.pop('user_id', None)
     return redirect(url_for('index'))
 
-@app.route('/user/dashboard', methods=['GET', 'POST'])
-def user_dashboard():
+@app.route('/register_item_for_tracking', methods=['GET', 'POST'])
+def register_item_for_tracking():
     if 'user_id' not in session:
         return redirect(url_for('login'))
-    user = User.query.get(session['user_id'])
+    
     if request.method == 'POST':
         name = request.form['name']
         email = request.form['email']
         phone = request.form['phone']
         title = request.form['title']
-        image = request.files['image']
-        if image:
-            filename = secure_filename(image.filename)
-            upload_folder = os.path.join('static', 'useruploads')
-            if not os.path.exists(upload_folder):
-                os.makedirs(upload_folder)
-            image_path = os.path.join(upload_folder, filename)
-            image.save(image_path)
-
+        images = request.files.getlist('images')
+        
+        if images:
+            image_filenames = []
+            for image in images:
+                filename = secure_filename(image.filename)
+                upload_folder = os.path.join('static', 'useruploads')
+                if not os.path.exists(upload_folder):
+                    os.makedirs(upload_folder)
+                image_path = os.path.join(upload_folder, filename)
+                image.save(image_path)
+                image_filenames.append(filename)
+            
             item_id = generate_id().lower()
-            new_item = Item(id=item_id, title=title, name=name, email=email, phone=phone, image=filename, reported=True, user_id=user.id)
+            user_id = session.get('user_id')
+            new_item = Item(
+                id=item_id,
+                title=title,
+                name=name,
+                email=email,
+                phone=phone,
+                image=image_filenames[0],  # First image is the title image
+                reported=False,
+                user_id=user_id,
+                tracked_since=datetime.utcnow()
+            )
             db.session.add(new_item)
             db.session.commit()
-            flash(_('Item added successfully'))
-    items = Item.query.filter_by(user_id=user.id).all()
-    return render_template('user_dashboard.html', items=items)
+            
+            # Save other images if any
+            for filename in image_filenames[1:]:
+                additional_image = ItemImage(item_id=item_id, filename=filename)
+                db.session.add(additional_image)
+            db.session.commit()
+            
+            return redirect(url_for('item_registered', item_id=item_id))
+    return render_template('register_item_for_tracking.html', user=g.user)
+
+@app.route('/register_item_as_missing', methods=['GET', 'POST'])
+def register_item_as_missing():
+    if request.method == 'POST':
+        name = request.form['name']
+        email = request.form['email']
+        phone = request.form['phone']
+        title = request.form['title']
+        images = request.files.getlist('images')
+        
+        if images:
+            image_filenames = []
+            for image in images:
+                filename = secure_filename(image.filename)
+                upload_folder = os.path.join('static', 'useruploads')
+                if not os.path.exists(upload_folder):
+                    os.makedirs(upload_folder)
+                image_path = os.path.join(upload_folder, filename)
+                image.save(image_path)
+                image_filenames.append(filename)
+            
+            item_id = generate_id().lower()
+            new_item = Item(
+                id=item_id,
+                title=title,
+                name=name,
+                email=email,
+                phone=phone,
+                image=image_filenames[0],  # First image is the title image
+                reported=True,
+                reported_since=datetime.utcnow()
+            )
+            db.session.add(new_item)
+            db.session.commit()
+            
+            # Save other images if any
+            for filename in image_filenames[1:]:
+                additional_image = ItemImage(item_id=item_id, filename=filename)
+                db.session.add(additional_image)
+            db.session.commit()
+            
+            return render_template('item_registered.html', item_id=item_id)
+    return render_template('register_item_as_missing.html', user=g.user)
+
+@app.route('/item_registered')
+def item_registered():
+    item_id = request.args.get('item_id')
+    return render_template('item_registered.html', item_id=item_id)
+
+@app.route('/about')
+def about():
+    return render_template('about.html')
+
 
 if __name__ == '__main__':
     db.create_all()

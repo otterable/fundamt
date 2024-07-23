@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="{{ g.locale }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ _('Item Registered') }}</title>
+      {% include 'head_includes.html' %}
+</head>
+<body>
+    {% include 'navbar.html' %}
+    <div class="container">
+        <h1 class="text-center my-4">{{ _('Item Registered') }}</h1>
+        <p>{{ _('Your item has been registered into the database.') }}</p>
+        <p>{{ _('Write this ID on your sticker: ') }}<strong>{{ item_id }}</strong></p>
+        <a href="{{ url_for('index') }}" class="btn btn-primary">{{ _("I'm finished") }}</a>
+    </div>
+</body>
+</html>

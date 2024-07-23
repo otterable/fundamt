@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="{{ g.locale }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ _('Register Item as Missing') }}</title>
+    {% include 'head_includes.html' %}
+</head>
+<body>
+    {% include 'navbar.html' %}
+    <div class="container">
+        <h1 class="text-center my-4">{{ _('Register Item as Missing') }}</h1>
+        {% if user %}
+            <p class="text-center">{{ _('Logged in as: ') }}{{ user.username }}</p>
+        {% else %}
+            <p class="text-center">{{ _("You're not logged in. Your item will be automatically marked as missing. Mark down the tracking ID, as it will not be shown again.") }}</p>
+            <div class="text-center">
+                <a href="{{ url_for('login') }}" class="btn btn-secondary">{{ _('Login') }}</a>
+            </div>
+        {% endif %}
+        <form action="{{ url_for('register_item_as_missing') }}" method="POST" class="form-signin" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="title">{{ _('Title') }}</label>
+                <input type="text" name="title" class="form-control" id="title" required>
+            </div>
+            <div class="form-group">
+                <label for="name">{{ _('Your Name') }}</label>
+                <input type="text" name="name" class="form-control" id="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">{{ _('Email') }}</label>
+                <input type="email" name="email" class="form-control" id="email" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">{{ _('Phone') }}</label>
+                <input type="tel" name="phone" class="form-control" id="phone" required>
+            </div>
+            <div class="form-group">
+                <label for="images">{{ _('Photos') }}</label>
+                <input type="file" name="images" class="form-control-file" id="images" multiple required>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">{{ _('Register Item') }}</button>
+        </form>
+    </div>
+</body>
+</html>

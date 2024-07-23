@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-07-21 19:25+0200\n"
-"PO-Revision-Date: 2024-07-21 19:25+0200\n"
+"POT-Creation-Date: 2024-07-23 23:19+0200\n"
+"PO-Revision-Date: 2024-07-23 23:20+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: de\n"
 "Language-Team: de <LL@li.org>\n"
@@ -18,152 +18,351 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.15.0\n"
 
-#: app.py:116
-msgid "The owner has been notified."
-msgstr "Der Besitzer wurde benachrichtigt."
+#: app.py:94
+msgid "Item deleted successfully"
+msgstr "Artikel erfolgreich gelöscht"
 
-#: app.py:118
-msgid "Failed to send notification: "
-msgstr "Benachrichtigung konnte nicht gesendet werden: "
-
-#: app.py:120
+#: app.py:96 app.py:164
 msgid "Item not found"
 msgstr "Artikel nicht gefunden"
 
-#: app.py:131 app.py:188
+#: app.py:160
+msgid "The owner has been notified."
+msgstr "Der Besitzer wurde benachrichtigt."
+
+#: app.py:162
+msgid "Failed to send notification: "
+msgstr "Benachrichtigung konnte nicht gesendet werden: "
+
+#: app.py:175 app.py:252
 msgid "Invalid credentials"
 msgstr "Ungültige Anmeldeinformationen"
 
-#: app.py:155 app.py:219
+#: app.py:219
 msgid "Item added successfully"
 msgstr "Artikel erfolgreich hinzugefügt"
 
-#: app.py:175
+#: app.py:239
 msgid "Registration successful"
 msgstr "Registrierung erfolgreich"
 
-#: templates/index.html:6 templates/index.html:13
+#: templates/admin_dashboard.html:6 templates/admin_dashboard.html:12
+msgid "Admin Dashboard"
+msgstr "Admin-Dashboard"
+
+#: templates/admin_dashboard.html:15
+msgid "Item Name"
+msgstr "Artikelname"
+
+#: templates/admin_dashboard.html:19 templates/register_item_as_missing.html:31
+#: templates/register_item_for_tracking.html:26
+msgid "Email"
+msgstr "E-Mail"
+
+#: templates/admin_dashboard.html:23 templates/register_item_as_missing.html:35
+#: templates/register_item_for_tracking.html:30
+msgid "Phone"
+msgstr "Telefon"
+
+#: templates/admin_dashboard.html:27
+msgid "Image"
+msgstr "Bild"
+
+#: templates/admin_dashboard.html:30
+msgid "Add Item"
+msgstr "Artikel hinzufügen"
+
+#: templates/admin_dashboard.html:33
+msgid "Return to Index"
+msgstr "Zurück zum Index"
+
+#: templates/admin_dashboard.html:35
+msgid "Existing Items"
+msgstr "Bestehende Artikel"
+
+#: templates/admin_dashboard.html:43 templates/my_tracked_items.html:47
+msgid "Delete"
+msgstr "Löschen"
+
+#: templates/index.html:7 templates/index.html:16
 msgid "Fundamt - Lost and Found"
 msgstr "Fundamt - Verloren und Gefunden"
 
-#: templates/index.html:14
+#: templates/index.html:18
 msgid ""
 "Make it easy to find your items! Fundamt is a privacy-focused Lost and "
 "Found service."
 msgstr ""
-"Machen Sie es einfach, Ihre Gegenstände zu finden! Fundamt ist ein auf Privatsphäre fokussierter Fundservice."
+"Machen Sie es einfach, Ihre Artikel zu finden! Fundamt ist ein "
+"datenschutzorientierter Fundservice."
 
-#: templates/index.html:16
+#: templates/index.html:20
 msgid "Enter Item ID"
-msgstr "Geben Sie die Artikel-ID ein"
+msgstr "Artikel-ID eingeben"
 
-#: templates/index.html:17
+#: templates/index.html:21
 msgid "Search"
 msgstr "Suchen"
 
-#: templates/index.html:20
-msgid "Admin Login"
-msgstr "Admin-Login"
-
-#: templates/index.html:21
-msgid "Login"
-msgstr "Anmelden"
-
-#: templates/index.html:22
-msgid "Register"
-msgstr "Registrieren"
-
 #: templates/index.html:25
-msgid "Reported Missing Items"
-msgstr "Gemeldete verlorene Artikel"
+msgid "I found an item, what to do?"
+msgstr "Ich habe einen Artikel gefunden, was tun?"
 
-#: templates/index.html:32
-msgid "Last Location Found"
-msgstr "Letzter Fundort"
+#: templates/index.html:27
+msgid ""
+"If you found an item, enter its ID into the search field to let the owner"
+" know."
+msgstr ""
+"Wenn Sie einen Artikel gefunden haben, geben Sie dessen ID in das "
+"Suchfeld ein, um den Besitzer zu benachrichtigen."
+
+#: templates/index.html:31 templates/index.html:34
+#: templates/my_tracked_items.html:6 templates/my_tracked_items.html:12
+#: templates/my_tracked_items.html:24
+msgid "My Tracked Items"
+msgstr "Meine verfolgten Artikel"
+
+#: templates/index.html:36
+msgid "Log in to enter your items in the system for tracking."
+msgstr "Melden Sie sich an, um Ihre Artikel zur Verfolgung ins System einzutragen."
 
 #: templates/index.html:40
-msgid "FAQ"
-msgstr "FAQ"
+msgid "Register item into database"
+msgstr "Artikel in die Datenbank eintragen"
 
-#: templates/index.html:42
+#: templates/index.html:44
+msgid "Reported Missing Items"
+msgstr "Gemeldete fehlende Artikel"
+
+#: templates/index.html:59
+msgid "FAQ"
+msgstr "Häufig gestellte Fragen"
+
+#: templates/index.html:61
 msgid "How does it work?"
 msgstr "Wie funktioniert es?"
 
-#: templates/index.html:45
+#: templates/index.html:64
 msgid "Tag your personal items with a Fundamt sticker or a keychain."
-msgstr "Kennzeichnen Sie Ihre persönlichen Gegenstände mit einem Fundamt-Aufkleber oder einem Schlüsselanhänger."
+msgstr ""
+"Kennzeichnen Sie Ihre persönlichen Gegenstände mit einem Fundamt-"
+"Aufkleber oder einem Schlüsselanhänger."
 
-#: templates/index.html:46
+#: templates/index.html:65
 msgid "The finder of your item sees the ID of the item and types it into Fundamt."
-msgstr "Der Finder Ihres Gegenstandes sieht die ID des Gegenstandes und gibt sie in Fundamt ein."
+msgstr ""
+"Der Finder Ihres Gegenstandes sieht die ID des Artikels und gibt sie in "
+"Fundamt ein."
 
-#: templates/index.html:47
+#: templates/index.html:66
 msgid "They can then send you a message to your phone or email."
-msgstr "Sie können Ihnen dann eine Nachricht auf Ihr Telefon oder Ihre E-Mail senden."
+msgstr ""
+"Sie können Ihnen dann eine Nachricht an Ihr Telefon oder Ihre E-Mail "
+"senden."
 
-#: templates/index.html:48
+#: templates/index.html:67
 msgid "You will get in contact with them by sending your contact information."
-msgstr "Sie werden mit ihnen in Kontakt treten, indem Sie Ihre Kontaktinformationen senden."
+msgstr ""
+"Sie werden mit ihnen in Kontakt treten, indem Sie Ihre Kontaktdaten "
+"senden."
 
-#: templates/index.html:49
-msgid "The finder won't see your phone number or email."
-msgstr "Der Finder sieht weder Ihre Telefonnummer noch Ihre E-Mail-Adresse."
+#: templates/index.html:68
+msgid "The finder won\\'t see your phone number or email."
+msgstr "Der Finder wird Ihre Telefonnummer oder E-Mail nicht sehen."
 
-#: templates/index.html:54
+#: templates/index.html:73
 msgid "Is it free?"
 msgstr "Ist es kostenlos?"
 
-#: templates/index.html:56
+#: templates/index.html:75
 msgid "Fundamt is free and is supported through sales of stickers."
-msgstr "Fundamt ist kostenlos und wird durch den Verkauf von Aufklebern unterstützt."
+msgstr ""
+"Fundamt ist kostenlos und wird durch den Verkauf von Aufklebern "
+"unterstützt."
 
-#: templates/index.html:60
+#: templates/index.html:79
 msgid "What data do you save?"
 msgstr "Welche Daten speichern Sie?"
 
-#: templates/index.html:62
+#: templates/index.html:81
 msgid "Fundamt is a privacy-focused solution. We save the following information:"
-msgstr "Fundamt ist eine auf Privatsphäre fokussierte Lösung. Wir speichern die folgenden Informationen:"
+msgstr ""
+"Fundamt ist eine datenschutzorientierte Lösung. Wir speichern die "
+"folgenden Informationen:"
 
-#: templates/index.html:64
+#: templates/index.html:83
 msgid ""
 "Item: Description of item, images of item (EXIF data automatically "
 "removed), contact information (this can be anything you type in, for "
 "example, your Signal account), reported status (yes/no)."
 msgstr ""
-"Artikel: Beschreibung des Artikels, Bilder des Artikels (EXIF-Daten werden automatisch entfernt), Kontaktinformationen (dies kann alles sein, was Sie eingeben, zum Beispiel Ihr Signal-Konto), Meldestatus (ja/nein)."
+"Artikel: Beschreibung des Artikels, Bilder des Artikels (EXIF-Daten "
+"werden automatisch entfernt), Kontaktinformationen (dies kann alles sein,"
+" was Sie eingeben, zum Beispiel Ihr Signal-Konto), gemeldeter Status "
+"(ja/nein)."
 
-#: templates/index.html:65
+#: templates/index.html:84
 msgid ""
 "User account (optional): Phone number, e-mail, password. User accounts "
 "allow item management but are not necessary."
 msgstr ""
-"Benutzerkonto (optional): Telefonnummer, E-Mail, Passwort. Benutzerkonten ermöglichen die Verwaltung von Artikeln, sind jedoch nicht erforderlich."
+"Benutzerkonto (optional): Telefonnummer, E-Mail, Passwort. Benutzerkonten"
+" ermöglichen die Artikelverwaltung, sind aber nicht erforderlich."
 
-#: templates/index.html:85
+#: templates/index.html:96
 msgid "Is it correct?"
 msgstr "Ist es korrekt?"
 
-#: templates/index.html:96
+#: templates/index.html:107
 msgid "No"
 msgstr "Nein"
 
-#: templates/index.html:97
+#: templates/index.html:108
 msgid "Yes"
 msgstr "Ja"
 
-#: templates/index.html:108
+#: templates/index.html:119
 msgid "Message owner"
 msgstr "Nachricht an den Besitzer"
 
-#: templates/index.html:114
+#: templates/index.html:125
 msgid "Enter your message"
 msgstr "Geben Sie Ihre Nachricht ein"
 
-#: templates/index.html:117
+#: templates/index.html:128
 msgid "Close"
 msgstr "Schließen"
 
-#: templates/index.html:118
+#: templates/index.html:129
 msgid "Send Message"
 msgstr "Nachricht senden"
+
+#: templates/item_registered.html:6 templates/item_registered.html:12
+msgid "Item Registered"
+msgstr "Artikel registriert"
+
+#: templates/item_registered.html:13
+msgid "Your item has been registered into the database."
+msgstr "Ihr Artikel wurde in die Datenbank eingetragen."
+
+#: templates/item_registered.html:14
+msgid "Write this ID on your sticker: "
+msgstr "Schreiben Sie diese ID auf Ihren Aufkleber: "
+
+#: templates/item_registered.html:15
+msgid "I'm finished"
+msgstr "Ich bin fertig"
+
+#: templates/my_tracked_items.html:14
+#: templates/register_item_as_missing.html:14
+#: templates/register_item_for_tracking.html:14
+msgid "Logged in as: "
+msgstr "Angemeldet als: "
+
+#: templates/my_tracked_items.html:20
+msgid "Add New Item"
+msgstr "Neuen Artikel hinzufügen"
+
+#: templates/my_tracked_items.html:21
+msgid "Register New Missing Item"
+msgstr "Neuen fehlenden Artikel registrieren"
+
+#: templates/my_tracked_items.html:32
+msgid "ID: "
+msgstr "ID: "
+
+#: templates/my_tracked_items.html:33
+msgid "Status: "
+msgstr "Status: "
+
+#: templates/my_tracked_items.html:34
+msgid "Tracked since: "
+msgstr "Verfolgt seit: "
+
+#: templates/my_tracked_items.html:36
+msgid "Reported since: "
+msgstr "Gemeldet seit: "
+
+#: templates/my_tracked_items.html:42
+msgid "Select Action"
+msgstr "Aktion auswählen"
+
+#: templates/my_tracked_items.html:45
+msgid "Report Missing"
+msgstr "Als fehlend melden"
+
+#: templates/my_tracked_items.html:46
+msgid "Unreport"
+msgstr "Meldung aufheben"
+
+#: templates/navbar.html:12
+msgid "Home"
+msgstr "Startseite"
+
+#: templates/navbar.html:16
+msgid "Logout"
+msgstr "Abmelden"
+
+#: templates/navbar.html:19
+msgid "Add an Item"
+msgstr "Einen Artikel hinzufügen"
+
+#: templates/navbar.html:23 templates/register_item_as_missing.html:18
+msgid "Login"
+msgstr "Anmelden"
+
+#: templates/navbar.html:26
+msgid "Register"
+msgstr "Registrieren"
+
+#: templates/navbar.html:29
+msgid "Register a Missing Item"
+msgstr "Einen fehlenden Artikel registrieren"
+
+#: templates/navbar.html:33
+msgid "Order Stickers"
+msgstr "Aufkleber bestellen"
+
+#: templates/navbar.html:37
+msgid "Language"
+msgstr "Sprache"
+
+#: templates/register_item_as_missing.html:6
+#: templates/register_item_as_missing.html:12
+msgid "Register Item as Missing"
+msgstr "Artikel als fehlend registrieren"
+
+#: templates/register_item_as_missing.html:16
+msgid ""
+"You're not logged in. Your item will be automatically marked as missing. "
+"Mark down the tracking ID, as it will not be shown again."
+msgstr ""
+"Sie sind nicht angemeldet. Ihr Artikel wird automatisch als fehlend "
+"markiert. Notieren Sie sich die Tracking-ID, da sie nicht erneut "
+"angezeigt wird."
+
+#: templates/register_item_as_missing.html:23
+#: templates/register_item_for_tracking.html:18
+msgid "Title"
+msgstr "Titel"
+
+#: templates/register_item_as_missing.html:27
+#: templates/register_item_for_tracking.html:22
+msgid "Your Name"
+msgstr "Ihr Name"
+
+#: templates/register_item_as_missing.html:39
+#: templates/register_item_for_tracking.html:34
+msgid "Photos"
+msgstr "Fotos"
+
+#: templates/register_item_as_missing.html:42
+#: templates/register_item_for_tracking.html:37
+msgid "Register Item"
+msgstr "Artikel registrieren"
+
+#: templates/register_item_for_tracking.html:7
+#: templates/register_item_for_tracking.html:12
+msgid "Register Item for Tracking"
+msgstr "Artikel zur Verfolgung registrieren"
+

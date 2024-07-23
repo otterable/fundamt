@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="{{ g.locale }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% include 'head_includes.html' %}
+    <title>{{ _('Register Item for Tracking') }}</title>
+</head>
+<body>
+    {% include 'navbar.html' %}
+    <div class="container">
+        <h1 class="text-center my-4">{{ _('Register Item for Tracking') }}</h1>
+        {% if user %}
+            <p>{{ _('Logged in as: ') }}{{ user.username }}</p>
+        {% endif %}
+        <form action="{{ url_for('register_item_for_tracking') }}" method="POST" class="form-signin" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="title">{{ _('Title') }}</label>
+                <input type="text" name="title" class="form-control" id="title" required>
+            </div>
+            <div class="form-group">
+                <label for="name">{{ _('Your Name') }}</label>
+                <input type="text" name="name" class="form-control" id="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">{{ _('Email') }}</label>
+                <input type="email" name="email" class="form-control" id="email" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">{{ _('Phone') }}</label>
+                <input type="tel" name="phone" class="form-control" id="phone" required>
+            </div>
+            <div class="form-group">
+                <label for="images">{{ _('Photos') }}</label>
+                <input type="file" name="images" class="form-control-file" id="images" multiple required>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">{{ _('Register Item') }}</button>
+        </form>
+    </div>
+</body>
+</html>
